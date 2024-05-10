@@ -5,5 +5,6 @@
         public int HabitId { get; set; }
         public string Name { get; set; }
         public DateTime Created { get; set; }
+        public int CompletedCount { get; set; }
     }
 }
