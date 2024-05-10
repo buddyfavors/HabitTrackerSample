@@ -21,6 +21,7 @@ namespace HabitTrackerSample.Controllers
             var habit = new Habit
             {
                 Name = Guid.NewGuid().ToString(),
+                Created = DateTime.UtcNow
             };
 
             db.Habits.Add(habit);
