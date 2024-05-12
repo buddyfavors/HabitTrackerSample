@@ -79,5 +79,28 @@ namespace HabitTrackerSample.Controllers
                 return "Invalid Input";
             }
         }
+        [HttpGet("/CompleteHabit")]
+        public async Task<string> CompleteHabit([FromQuery] int id)
+        {
+            using var db = new HabitTrackerContext();
+
+            //Queries the string of an id, can be done by http://localhost:XXXX/CompleteHabit?id=X 
+            var targetHabit = await db.Habits.FirstOrDefaultAsync(h => h.HabitId == id);
+
+            if(targetHabit != null)
+            {
+                //Increments queried id completedcount by 1
+                targetHabit.CompletedCount++;
+
+                //saves database changes
+                await db.SaveChangesAsync();
+
+                return $"Habit name {targetHabit.Name} and ID {id}, has been located and Completed Count has been incremented";
+            }
+            else
+            {
+                return $"Habit with ID {id}, can not be found";
+            }
+        }
     }
 }
