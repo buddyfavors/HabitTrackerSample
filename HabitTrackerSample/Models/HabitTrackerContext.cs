@@ -5,6 +5,7 @@ namespace HabitTrackerSample.Models
     public class HabitTrackerContext : DbContext
     {
         public DbSet<Habit> Habits { get; set; }
+        public DbSet<Rewards> Rewards { get; set; }
 
         public string DbPath { get; }
 

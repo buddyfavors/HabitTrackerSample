@@ -37,6 +37,24 @@ namespace HabitTrackerSample.Migrations
 
                     b.ToTable("Habits");
                 });
+
+            modelBuilder.Entity("HabitTrackerSample.Models.Rewards", b =>
+                {
+                    b.Property<int>("RewardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RewardId");
+
+                    b.ToTable("Rewards");
+                });
 #pragma warning restore 612, 618
         }
     }
