@@ -40,5 +40,21 @@ namespace HabitTrackerSample.Controllers
 
             return $"Habit Count: {habitCount}";
         }
+        [HttpGet("/GetHabitsCreatedTodayCount")]
+        public async Task<string> GetHabitsCreatedTodayCount()
+        {
+            using var db = new HabitTrackerContext();
+
+            //Today start
+            var today = DateTime.Today;
+
+            //Tomrrow start
+            var tomorrow = today.AddDays(1);
+
+            //Taking only in the range of {today, tomorrow}
+            var habitCountToday = await db.Habits.Where(h => h.Created >= today && h.Created < tomorrow).CountAsync();
+
+            return $"Habit Count Today: {habitCountToday}";
+        }
     }
 }
